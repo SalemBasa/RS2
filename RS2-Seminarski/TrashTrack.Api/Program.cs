@@ -68,6 +68,16 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dataContext = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+
+    if (!dataContext.Database.CanConnect())
+    {
+        dataContext.Database.Migrate();
+    }
+}
+
 string hostname = Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "";
 string username = Environment.GetEnvironmentVariable("RABBITMQ_USERNAME") ?? "guest";
 string password = Environment.GetEnvironmentVariable("RABBITMQ_PASSWORD") ?? "guest";
