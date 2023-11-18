@@ -14,7 +14,7 @@ services:
    networks: 
     - trashtracknet2023
 
-  elibary_sql:
+  trashtrack_sql:
     container_name: app_db
     image: mcr.microsoft.com/mssql/server:2017-latest
     restart: unless-stopped
@@ -29,7 +29,7 @@ services:
     networks:
       - trashtracknet2023
 
-  elibary_api:
+  trashtrack_api:
     restart: unless-stopped
     build:
       context: ./RS2-Seminarski
