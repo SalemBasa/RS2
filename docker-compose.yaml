@@ -1,19 +1,5 @@
 version: '3'
 services:
-  rabbitMQ:
-   image: rabbitmq:3-management
-   container_name: 'rabbitmq_container'
-   environment:
-    - RABBITMQ_DEFAULT_USER=guest
-    - RABBITMQ_DEFAULT_PASS=guest
-   ports:
-    - 8050:15672
-    - 5672:5672
-   expose:
-    - 5672
-   networks: 
-    - trashtracknet2023
-
   trashtrack_sql:
     container_name: app_db
     image: mcr.microsoft.com/mssql/server:2017-latest
@@ -28,49 +14,7 @@ services:
       - 1433
     networks:
       - trashtracknet2023
-
-  trashtrack_api:
-    restart: unless-stopped
-    build:
-      context: ./RS2-Seminarski
-    environment:
-      - ConnectionStrings:Main=Server=trashtrack_sql, 1433;Database=TrashTrack;User=sa;Password=Word5678?;ConnectRetryCount=0; TrustServerCertificate=True
-      - ASPNETCORE_ENVIRONMENT=Development
-      - RABBITMQ_HOST=rabbitMQ
-      - RABBITMQ_USERNAME=guest
-      - RABBITMQ_PASSWORD=guest
-      - RABBITMQ_VIRTUALHOST=/
-    ports:
-      - 7034:7034
-    networks:
-      - trashtracknet2023
-    links:
-      - trashtrack_sql
-    depends_on:
-      - trashtrack_sql
-      - rabbitMQ
-
-
-  auxiliary:
-    restart: unless-stopped
-    build:
-      context: ./Auxiliary
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - RABBITMQ_HOST=rabbitMQ
-      - RABBITMQ_USERNAME=guest
-      - RABBITMQ_PASSWORD=guest
-      - RABBITMQ_VIRTUALHOST=/
-    ports:
-      - 7138:7138
-    networks:
-      - trashtracknet2023
-    depends_on:
-      - rabbitMQ
       
-    
-    
-  
 networks:
   trashtracknet2023:
     driver: bridge
