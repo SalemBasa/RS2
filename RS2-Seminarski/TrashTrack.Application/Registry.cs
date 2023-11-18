@@ -29,7 +29,7 @@ namespace TrashTrack.Application
             services.AddScoped<IQuizzesService, QuizzesService>();
             services.AddScoped<IScheduleDriversService, ScheduleDriversService>();
             services.AddScoped<IScheduleGarbagesService, ScheduleGarbagesService>();
-            //services.AddScoped<INotificationRabbitService, NotificationRabbitService>();
+            services.AddScoped<INotificationRabbitService, NotificationRabbitService>();
             services.AddScoped<IProductsService, ProductService>();
             services.AddScoped<IOrderDetailsService, OrderDetailsService>();
             services.AddScoped<IOrdersService, OrdersService>();
