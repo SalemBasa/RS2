@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TrashTrack.Core\TrashTrack.Core.csproj" />
+    <ProjectReference Include="..\TrashTrack.Infrastructure.Interfaces\TrashTrack.Infrastructure.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>
