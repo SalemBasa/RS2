@@ -61,6 +61,7 @@ namespace TrashTrack.Application
             services.AddScoped<IValidator<ProductUpsertDto>, ProductValidator>();
             services.AddScoped<IValidator<OrderUpsertDto>, OrderValidator>();
             services.AddScoped<IValidator<OrderDetailsUpsertDto>, OrderDetailsValidator>();
+            services.AddScoped<IValidator<NotificationRabbitUpsertDto>, NotificationRabbitValidator>();
 
         }
     }
