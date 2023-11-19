@@ -13,7 +13,6 @@ namespace TrashTrack_Api.Controllers
         {
         }
 
-        [Authorize]
         [HttpGet("GlassGarbageCount")]
         public async Task<IActionResult> GetGlassGarbageCountAsync(CancellationToken cancellationToken = default)
         {
@@ -22,7 +21,6 @@ namespace TrashTrack_Api.Controllers
             return Ok(count);
         }
 
-        [Authorize]
         [HttpGet("MetalGarbageCount")]
         public async Task<IActionResult> GetMetalGarbageCountAsync(CancellationToken cancellationToken = default)
         {
@@ -31,7 +29,6 @@ namespace TrashTrack_Api.Controllers
             return Ok(count);
         }
 
-        [Authorize]
         [HttpGet("PlasticGarbageCount")]
         public async Task<IActionResult> GetPlasticGarbageCountAsync(CancellationToken cancellationToken = default)
         {
@@ -40,7 +37,6 @@ namespace TrashTrack_Api.Controllers
             return Ok(count);
         }
 
-        [Authorize]
         [HttpGet("OrganicGarbageCount")]
         public async Task<IActionResult> GetOrganicGarbageCountAsync(CancellationToken cancellationToken = default)
         {

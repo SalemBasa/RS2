@@ -43,7 +43,6 @@ public class ReservationController : BaseCrudController<ReservationDto, Reservat
 		}
 	}
 
-    [Authorize]
     [HttpGet("ReservationCount")]
     public async Task<IActionResult> GetReservationCountAsync(CancellationToken cancellationToken = default)
     {

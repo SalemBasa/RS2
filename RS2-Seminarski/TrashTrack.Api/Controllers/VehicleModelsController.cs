@@ -12,7 +12,6 @@ namespace TrashTrack.Api.Controllers
         {
         }
 
-        [Authorize]
         [HttpGet("GarbageTruckCount")]
         public async Task<IActionResult> GetGarbageTruckCountAsync(CancellationToken cancellationToken = default)
         {
@@ -21,7 +20,6 @@ namespace TrashTrack.Api.Controllers
             return Ok(count);
         }
 
-        [Authorize]
         [HttpGet("TruckCount")]
         public async Task<IActionResult> GetTruckCountAsync(CancellationToken cancellationToken = default)
         {
