@@ -39,31 +39,6 @@ namespace TrashTrack.Api.Controllers
         [NonAction]
         public override Task<IActionResult> Put(UserUpsertDto upsertDto, CancellationToken cancellationToken = default) => base.Put(upsertDto, cancellationToken);
 
-        [HttpPut("ToggleStatus")]
-        public async Task<IActionResult> ToggleStatus(int id, CancellationToken cancellationToken = default)
-        {
-            await Service.ToggleStatusAsync(id, cancellationToken);
-
-            return NoContent();
-        }
-
-        [Authorize]
-        [HttpPut("ChangePassword")]
-        public async Task<IActionResult> ChangePassword([FromBody] UserChangePasswordDto dto, CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                await Service.ChangePasswordAsync(dto, cancellationToken);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-
-                Logger.LogError(e, "Problem when updating password");
-                return BadRequest(e.Message + ", " + e?.InnerException);
-            }
-        }
-
         [Authorize]
         [HttpPut("PutUser")]
         public async Task<IActionResult> PutUser([FromBody] UserUpdateModel model, CancellationToken cancellationToken = default)
