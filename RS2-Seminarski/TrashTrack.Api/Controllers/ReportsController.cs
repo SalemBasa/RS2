@@ -4,6 +4,7 @@ using TrashTrack.Application.Interfaces;
 using TrashTrack.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using TrashTrack.Api.Models.Report;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrashTrack.Api.Controllers
 {
@@ -16,6 +17,8 @@ namespace TrashTrack.Api.Controllers
         {
             _mapper = mapper;
         }
+
+        [Authorize]
         [HttpGet("Count")]
         public async Task<IActionResult> GetCount(ReportState reportState, CancellationToken cancellationToken = default)
         {
@@ -32,12 +35,13 @@ namespace TrashTrack.Api.Controllers
         }
 
         [HttpPost]
-        public override  Task<IActionResult> Post([FromBody] ReportUpsertDto upsertDto, CancellationToken cancellationToken = default)
+        public override Task<IActionResult> Post([FromBody] ReportUpsertDto upsertDto, CancellationToken cancellationToken = default)
         {
             upsertDto.ReportState = ReportState.WaitingForReview;
             return base.Post(upsertDto, cancellationToken);
         }
-        
+
+        [Authorize]
         [HttpPut("PutReportState")]
         public async Task<IActionResult> PutReportState([FromBody] ReportUpsertModel model, CancellationToken cancellationToken = default)
         {

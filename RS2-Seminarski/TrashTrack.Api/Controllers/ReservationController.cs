@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TrashTrack.Api.Models.Reservation;
 using TrashTrack.Application.Interfaces;
@@ -15,7 +16,8 @@ public class ReservationController : BaseCrudController<ReservationDto, Reservat
 	{
 		_mapper = mapper;
 	}
-	
+
+	[Authorize]
 	[HttpPut("PutReservationStatus")]
 	public async Task<IActionResult> PutReservationStatus([FromBody] ReservationUpdateModel model, CancellationToken cancellationToken = default)
 	{
@@ -24,8 +26,9 @@ public class ReservationController : BaseCrudController<ReservationDto, Reservat
 
 		return Ok(reservation);
 	}
-	
-	[HttpPost("PayWithBalance")]
+
+	[Authorize]
+    [HttpPost("PayWithBalance")]
 	public async Task<IActionResult> PayWithBalance([FromBody] ReservationUpsertDto dto, CancellationToken cancellationToken = default)
 	{
 		try
@@ -40,6 +43,7 @@ public class ReservationController : BaseCrudController<ReservationDto, Reservat
 		}
 	}
 
+    [Authorize]
     [HttpGet("ReservationCount")]
     public async Task<IActionResult> GetReservationCountAsync(CancellationToken cancellationToken = default)
     {

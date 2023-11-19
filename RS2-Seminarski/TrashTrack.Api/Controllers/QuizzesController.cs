@@ -2,6 +2,7 @@
 using TrashTrack.Core;
 using TrashTrack.Application.Interfaces;
 using TrashTrack.Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrashTrack.Api.Controllers
 {
@@ -10,8 +11,8 @@ namespace TrashTrack.Api.Controllers
         public QuizzesController(IQuizzesService service, ILogger<QuizzesController> logger) : base(service, logger)
         {
         }
-        
-             
+
+        [Authorize]     
         [HttpPost("QuizSubmission")]
         public async Task<IActionResult> QuizSubmission([FromBody] QuizSubmissionDto dto, CancellationToken cancellationToken = default)
         {

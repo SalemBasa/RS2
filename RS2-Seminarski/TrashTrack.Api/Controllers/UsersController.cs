@@ -4,6 +4,7 @@ using TrashTrack.Core;
 using TrashTrack.Application.Interfaces;
 using AutoMapper;
 using TrashTrack.Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrashTrack.Api.Controllers
 {
@@ -16,7 +17,7 @@ namespace TrashTrack.Api.Controllers
             _mapper = mapper;
         }
 
-
+        [Authorize]
         [HttpGet("GetCountByRole")]
         public async Task<IActionResult> GetCountByRole(Role role, CancellationToken cancellationToken = default)
         {
@@ -46,6 +47,7 @@ namespace TrashTrack.Api.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpPut("ChangePassword")]
         public async Task<IActionResult> ChangePassword([FromBody] UserChangePasswordDto dto, CancellationToken cancellationToken = default)
         {
@@ -61,7 +63,8 @@ namespace TrashTrack.Api.Controllers
                 return BadRequest(e.Message + ", " + e?.InnerException);
             }
         }
-        
+
+        [Authorize]
         [HttpPut("PutUser")]
         public async Task<IActionResult> PutUser([FromBody] UserUpdateModel model, CancellationToken cancellationToken = default)
         {
@@ -71,6 +74,7 @@ namespace TrashTrack.Api.Controllers
             return Ok(user);
         }
 
+        [Authorize]
         [HttpGet("UserCount")]
         public async Task<IActionResult> GetUserCountAsync(CancellationToken cancellationToken = default)
         {
@@ -79,6 +83,7 @@ namespace TrashTrack.Api.Controllers
             return Ok(count);
         }
 
+        [Authorize]
         [HttpGet("DriverCount")]
         public async Task<IActionResult> GetDriverCountAsync(CancellationToken cancellationToken = default)
         {
@@ -87,6 +92,7 @@ namespace TrashTrack.Api.Controllers
             return Ok(count);
         }
 
+        [Authorize]
         [HttpGet("AdministratorCount")]
         public async Task<IActionResult> GetAdministratorCountAsync(CancellationToken cancellationToken = default)
         {

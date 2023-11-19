@@ -2,6 +2,7 @@
 using TrashTrack.Application.Interfaces;
 using TrashTrack.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrashTrack.Api.Controllers
 {
@@ -11,6 +12,7 @@ namespace TrashTrack.Api.Controllers
         {
         }
 
+        [Authorize]
         [HttpGet("ByUser")]
         public async Task<IActionResult> GetOrdersByUserIdAsync([FromQuery] int userId, CancellationToken cancellationToken = default)
         {
@@ -26,6 +28,7 @@ namespace TrashTrack.Api.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut("ToggleOrderStatus")]
         public async Task<IActionResult> ToggleOrderStatus(int id, CancellationToken cancellationToken = default)
         {

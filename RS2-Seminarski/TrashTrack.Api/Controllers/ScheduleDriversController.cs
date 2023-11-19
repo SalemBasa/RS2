@@ -2,6 +2,7 @@
 using TrashTrack.Application.Interfaces;
 using TrashTrack.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrashTrack.Api.Controllers
 {
@@ -11,6 +12,7 @@ namespace TrashTrack.Api.Controllers
         {
         }
 
+        [Authorize]
         [HttpGet("BySchedule")]
         public async Task<IActionResult> GetByDriver([FromQuery] int scheduleId, CancellationToken cancellationToken = default)
         {

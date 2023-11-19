@@ -2,6 +2,7 @@
 using TrashTrack.Core;
 using TrashTrack.Application.Interfaces;
 using TrashTrack.Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrashTrack.Api.Controllers
 {
@@ -11,6 +12,7 @@ namespace TrashTrack.Api.Controllers
         {
         }
 
+        [Authorize]
         [HttpGet("ByCountry")]
         public async Task<IActionResult> GetByCountry([FromQuery] int countryId, CancellationToken cancellationToken = default)
         {

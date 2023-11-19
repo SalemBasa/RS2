@@ -35,6 +35,8 @@ namespace TrashTrack.Infrastructure
                     OrderDate = order.OrderDate,
                     Total = order.Total,
                     UserId = order.UserId,
+                    User = order.User,
+                    isCanceled = order.isCanceled,
                     OrderDetails = order.OrderDetails.Select(od => new OrderDetails()
                     {
                         Id = od.Id,
@@ -43,9 +45,10 @@ namespace TrashTrack.Infrastructure
                         {
                             Id = od.Product.Id,
                             Name = od.Product.Name,
+                            Price = od.Product.Price
                         }
                     }).ToList(),
-                    })
+                })
                 .ToPagedListAsync(searchObject, cancellationToken);
         }
     }

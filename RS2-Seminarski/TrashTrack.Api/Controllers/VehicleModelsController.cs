@@ -2,6 +2,7 @@
 using TrashTrack.Application.Interfaces;
 using TrashTrack.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrashTrack.Api.Controllers
 {
@@ -11,6 +12,7 @@ namespace TrashTrack.Api.Controllers
         {
         }
 
+        [Authorize]
         [HttpGet("GarbageTruckCount")]
         public async Task<IActionResult> GetGarbageTruckCountAsync(CancellationToken cancellationToken = default)
         {
@@ -19,6 +21,7 @@ namespace TrashTrack.Api.Controllers
             return Ok(count);
         }
 
+        [Authorize]
         [HttpGet("TruckCount")]
         public async Task<IActionResult> GetTruckCountAsync(CancellationToken cancellationToken = default)
         {

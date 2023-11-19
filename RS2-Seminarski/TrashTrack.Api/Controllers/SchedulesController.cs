@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TrashTrack.Api.Controllers;
 using TrashTrack.Api.Models.Schedules;
@@ -16,7 +17,8 @@ namespace TrashTrack_Api.Controllers
         {
             _mapper = mapper;
         }
-        
+
+        [Authorize]
         [HttpGet("ByDriver")]
         public async Task<IActionResult> GetByDriver([FromQuery] int driverId, CancellationToken cancellationToken = default)
         {
@@ -31,7 +33,8 @@ namespace TrashTrack_Api.Controllers
                 return BadRequest();
             }
         }
-        
+
+        [Authorize]
         [HttpPut("PutPickupStatus")]
         public async Task<IActionResult> PutPickupStatus([FromBody] ScheduleUpdateModel model, CancellationToken cancellationToken = default)
         {
@@ -40,7 +43,8 @@ namespace TrashTrack_Api.Controllers
 
             return Ok(schedule);
         }
-        
+
+        [Authorize]
         [HttpGet("/Recommended/{id}")]
         public Schedule Recommend(int id)
         {

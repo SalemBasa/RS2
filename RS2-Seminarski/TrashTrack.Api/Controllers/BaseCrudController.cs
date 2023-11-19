@@ -3,6 +3,7 @@
 using TrashTrack.Core;
 using TrashTrack.Application.Interfaces;
 using TrashTrack.Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrashTrack.Api.Controllers
 {
@@ -19,6 +20,7 @@ namespace TrashTrack.Api.Controllers
             Service = service;
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public virtual async Task<IActionResult> Get(int id, CancellationToken cancellationToken = default)
         {
@@ -34,6 +36,7 @@ namespace TrashTrack.Api.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet("GetPaged")]
         public virtual async Task<IActionResult> GetPaged([FromQuery] TSearchObject searchObject, CancellationToken cancellationToken = default)
         {
@@ -49,6 +52,7 @@ namespace TrashTrack.Api.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public virtual async Task<IActionResult> Post([FromBody] TUpsertDto upsertDto, CancellationToken cancellationToken = default)
         {
@@ -69,6 +73,7 @@ namespace TrashTrack.Api.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut]
         public virtual async Task<IActionResult> Put([FromBody] TUpsertDto upsertDto, CancellationToken cancellationToken = default)
         {
@@ -89,6 +94,7 @@ namespace TrashTrack.Api.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public virtual async Task<IActionResult> Delete(int id, CancellationToken cancellationToken = default)
         {
